@@ -48,7 +48,14 @@ function create_card_header(img, title, date, category){
     return card_header;
 }
 
-function create_card_body(job_title){}
+function create_card_body(job_title){
+    const card_body = document.createElement("p");
+    card_body.className = "card-body";
+    card_body.textContent = job_title;
+
+    return card_body;
+}
+
 function create_card_footer(capacity, total_capacity){}
 
 function create_card(item){
@@ -59,8 +66,10 @@ function create_card(item){
     card.className = "card";
     
     const header = create_card_header(item.img, item.title, item.date, item.category);
-    
+    const body = create_card_body(item.job_title);
+
     card.appendChild(header);
+    card.appendChild(body);
     col.appendChild(card);
     document.querySelector(".row").appendChild(col);
 }
