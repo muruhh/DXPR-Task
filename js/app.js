@@ -4,10 +4,6 @@ const number_of_items = 6;
 let start = 0;
 let end_of_items = false;
 
-window.onload = () => {
-    fetch_items();
-}
-
 function create_card_header(img, title, date, category){
     const card_header = document.createElement("div");
     card_header.className = "card-header";
@@ -105,6 +101,29 @@ function create_card(item){
     card.appendChild(footer);
     col.appendChild(card);
     document.querySelector(".row").appendChild(col);
+}
+
+window.onload = () => {
+    fetch_items();
+}
+
+window.onscroll = () => {
+    if (((window.innerHeight + window.scrollY) + 50) >= document.body.scrollHeight) {
+        if(start == items.length){
+            if(end_of_items === false){
+                end_of_items = true;
+
+                const no_more_items = document.createElement("div");
+                no_more_items.className = "no-more-items";
+                no_more_items.textContent = "No more items";
+                document.querySelector(".container").appendChild(no_more_items);
+            }
+        }
+        else{
+            document.querySelector(".loader").style.display = "flex";
+            fetch_items();
+        }
+    }
 }
 
 function fetch_items(){
