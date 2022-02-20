@@ -9,7 +9,6 @@ body{
     background-color: #ecf0f1;
 }
 
-
 .loader{
     height: 100%;
     width: 100%;
@@ -49,8 +48,6 @@ body{
         transform: scale(0.8);
     }
 }
-
-
 
 .container{
     width: 100%;
@@ -161,6 +158,12 @@ body{
     color: #222;
 }
 
+.no-more-items{
+    text-align: center;
+    padding: 50px 0 0;
+    font-size: 16px;
+    color: #999;
+}
 
 @media (min-width: 576px) { 
     .col{
