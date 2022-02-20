@@ -56,7 +56,38 @@ function create_card_body(job_title){
     return card_body;
 }
 
-function create_card_footer(capacity, total_capacity){}
+function create_card_footer(capacity, total_capacity){
+    const progress_width = (capacity / total_capacity) * 100;
+    let progressbar_class = "card-progressbar";
+
+    if(capacity == total_capacity){
+        progressbar_class += " card-progressbar-completed";
+    }
+
+    const card_footer = document.createElement("div");
+    card_footer.className = "card-footer";
+
+    const card_progressbar = document.createElement("div");
+    card_progressbar.className = progressbar_class;
+
+    const card_progress = document.createElement("div");
+    card_progress.style.width = `${progress_width}%`;
+
+    const card_capacity_container = document.createElement("div");
+    card_capacity_container.className = "card-capacity";
+    
+    const card_capacity = document.createElement("span");
+    card_capacity.textContent = `${capacity} Applied `;
+
+    card_capacity_container.appendChild(card_capacity);    
+    card_capacity_container.innerHTML += `of ${total_capacity} capacity`;
+
+    card_progressbar.appendChild(card_progress);    
+    card_footer.appendChild(card_progressbar);
+    card_footer.appendChild(card_capacity_container);
+
+    return card_footer;
+}
 
 function create_card(item){
     const col = document.createElement("div");
@@ -67,9 +98,11 @@ function create_card(item){
     
     const header = create_card_header(item.img, item.title, item.date, item.category);
     const body = create_card_body(item.job_title);
+    const footer = create_card_footer(item.capacity, item.total_capacity);
 
     card.appendChild(header);
     card.appendChild(body);
+    card.appendChild(footer);
     col.appendChild(card);
     document.querySelector(".row").appendChild(col);
 }
